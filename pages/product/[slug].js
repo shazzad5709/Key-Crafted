@@ -1,5 +1,7 @@
 import ProductDetailsCarousel from '@/components/ProductDetailsCarousel';
 import Wrapper from '@/components/Wrapper';
+import { IoMdHeartEmpty } from "react-icons/io";
+
 
 const Category = () => {
   return (
@@ -9,7 +11,7 @@ const Category = () => {
 
           {/* left column start  */}
           <div
-          className='w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0'>
+            className='w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0'>
             <ProductDetailsCarousel />
           </div>
 
@@ -28,10 +30,12 @@ const Category = () => {
             {/* prod price  */}
             <div className='text-lg font-semibold mb-5'>
               MRP: $99
-            </div> 
+            </div>
+
             <div className='text-md font-medium text-black/[0.5/'>
-              incl. of taxes   
-            </div> 
+              incl. of taxes
+            </div>
+
             <div className='text-md font-medium text-black/[0.5] mb-20'>
               {`(Also includes all applicable duties)`}
             </div>
@@ -52,8 +56,65 @@ const Category = () => {
               <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
                 UK 6
               </div>
+              <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
+                UK 7
+              </div>
+              <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
+                UK 8
+              </div>
+              <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
+                UK 10
+              </div>
+              <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer'>
+                UK 9
+              </div>
+              <div className='border rounded-md text-center py-3 font-medium hover:border-black cursor-pointer opacity-50'>
+                UK 11
+              </div>
             </div>
             {/* prod size end */}
+
+            {/* show error start */}
+            <div className='text-red-600 mt-1'>
+              Size Selection is required
+            </div>
+            {/* show error end */}
+
+            {/* add to cart button start */}
+            <button
+              className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75"
+              onClick={() => {
+                if (!selectedSize) {
+                  setShowError(true);
+                  document
+                    .getElementById("sizesGrid")
+                    .scrollIntoView({
+                      block: "center",
+                      behavior: "smooth",
+                    });
+                } else {
+                  dispatch(
+                    addToCart({
+                      ...product?.data?.[0],
+                      selectedSize,
+                      oneQuantityPrice: p.price,
+                    })
+                  );
+                  notify();
+                }
+              }}
+            >
+              Add to Cart
+            </button>
+            {/* add to cart button end */}
+
+            {/* WHISHLIST BUTTON START */}
+            <button className="w-full py-4 rounded-full border border-black text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10">
+              Whishlist
+              <IoMdHeartEmpty size={20} />
+            </button>
+            {/* WHISHLIST BUTTON END */}
+
 
 
           </div>
