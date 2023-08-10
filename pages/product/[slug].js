@@ -1,6 +1,8 @@
 import ProductDetailsCarousel from '@/components/ProductDetailsCarousel';
+import RelatedProducts from '@/components/RelatedProducts';
 import Wrapper from '@/components/Wrapper';
 import { IoMdHeartEmpty } from "react-icons/io";
+import ReactMarkdown from "react-markdown";
 
 
 const Category = () => {
@@ -115,11 +117,23 @@ const Category = () => {
             </button>
             {/* WHISHLIST BUTTON END */}
 
-
+            {/* description  */}
+            <div>
+              <div className="text-lg font-bold mb-5">
+                Product Details
+              </div>
+              <div className="markdown text-md mb-5">
+                <ReactMarkdown>
+                Nike Air is our iconic innovation that uses pressurized air in a durable, flexible membrane to provide lightweight cushioning. The air compresses on impact and then immediately returns to its original shape and volume, ready for the next impact.
+                </ReactMarkdown>
+              </div>
+            </div>
 
           </div>
 
         </div>
+
+        <RelatedProducts />
       </Wrapper>
     </div>
   )
